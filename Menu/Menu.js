@@ -6,7 +6,7 @@ let menuItems = [
   "What's New",
   'Tech Trends',
   'Music',
-  'Log Out'
+  'Log Out',
 ];
 
 /* 
@@ -33,3 +33,17 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+// {/* <div class="menu">
+// <ul>
+//   {each menu item as a list item}
+// </ul>
+// </div> */}
+
+function createMenu(array) {
+  // Define menu elements
+  const menu = document.createElement('div');
+  const list = document.createElement('ul');
+
+  return menu;
+}
