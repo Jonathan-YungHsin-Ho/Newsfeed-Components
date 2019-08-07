@@ -114,7 +114,7 @@ const data = [
 */
 
 function createArticle(dataObj) {
-  // Setup structure of elements
+  // Define new elements
   const article = document.createElement('div');
   const title = document.createElement('h2');
   const date = document.createElement('p');
@@ -122,4 +122,12 @@ function createArticle(dataObj) {
   const secondParagraph = document.createElement('p');
   const thirdParagraph = document.createElement('p');
   const expand = document.createElement('span');
+
+  // Set up structure of elements
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(firstParagraph);
+  article.appendChild(secondParagraph);
+  article.appendChild(thirdParagraph);
+  article.appendChild(expand);
 }
