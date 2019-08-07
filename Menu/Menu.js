@@ -34,12 +34,6 @@ let menuItems = [
   
 */
 
-// {/* <div class="menu">
-// <ul>
-//   {each menu item as a list item}
-// </ul>
-// </div> */}
-
 function createMenu(array) {
   // Define menu elements
   const menu = document.createElement('div');
@@ -47,9 +41,22 @@ function createMenu(array) {
 
   // Set up structure of menu elements
   menu.append(list);
-  array.forEach(item =>
-    list.append(document.createElement('li').textContent(item)),
-  );
+  array.forEach(item => {
+    const menuItem = document.createElement('li');
+    menuItem.textContent = item;
+    list.append(menuItem);
+  });
+
+  // Set up menu class names
+  menu.classList.add('menu');
+
+  const menuBtn = document.querySelector('.menu-button');
+
+  menuBtn.addEventListener('click', () => menu.classList.toggle('menu--open'));
 
   return menu;
 }
+
+const header = document.querySelector('.header');
+
+header.prepend(createMenu(menuItems));
