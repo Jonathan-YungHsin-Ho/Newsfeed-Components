@@ -143,5 +143,10 @@ function createArticle(dataObj) {
   secondParagraph = dataObj.secondParagraph;
   thirdParagraph = dataObj.thirdParagraph;
 
+  // Toggle button
+  expand.addEventListener('click', () =>
+    article.classList.toggle('article-open'),
+  );
+
   return article;
 }
