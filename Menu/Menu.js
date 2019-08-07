@@ -45,5 +45,11 @@ function createMenu(array) {
   const menu = document.createElement('div');
   const list = document.createElement('ul');
 
+  // Set up structure of menu elements
+  menu.append(list);
+  array.forEach(item =>
+    list.append(document.createElement('li').textContent(item)),
+  );
+
   return menu;
 }
