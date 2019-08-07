@@ -130,4 +130,9 @@ function createArticle(dataObj) {
   article.appendChild(secondParagraph);
   article.appendChild(thirdParagraph);
   article.appendChild(expand);
+
+  // Set class names
+  article.classList.add('article');
+  date.classList.add('date');
+  expand.classList.add('expandButton');
 }
