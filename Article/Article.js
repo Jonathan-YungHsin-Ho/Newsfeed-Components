@@ -136,8 +136,10 @@ function createArticle(dataObj) {
   const secondParagraph = document.createElement('p');
   const thirdParagraph = document.createElement('p');
   const expand = document.createElement('span');
+  const close = document.createElement('div');
 
   // Set up structure of elements
+  article.appendChild(close);
   article.appendChild(title);
   article.appendChild(date);
   article.appendChild(firstParagraph);
@@ -149,6 +151,7 @@ function createArticle(dataObj) {
   article.classList.add('article');
   date.classList.add('date');
   expand.classList.add('expandButton');
+  close.classList.add('closeButton');
 
   //Set content
   title.textContent = dataObj.title;
@@ -156,12 +159,27 @@ function createArticle(dataObj) {
   firstParagraph.textContent = dataObj.firstParagraph;
   secondParagraph.textContent = dataObj.secondParagraph;
   thirdParagraph.textContent = dataObj.thirdParagraph;
-  expand.textContent = 'Click to read';
 
   // Toggle button
-  expand.addEventListener('click', () =>
-    article.classList.toggle('article-open'),
-  );
+  expand.textContent = 'Click to read';
+  expand.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+    expand.textContent = article.classList.contains('article-open')
+      ? 'Click to hide'
+      : 'Click to read';
+    article.style.overflow = article.classList.contains('article-open')
+      ? 'auto'
+      : 'hidden';
+  });
+
+  // Close button
+  close.textContent = '\u2716';
+  close.style.marginTop = '0.6rem';
+  close.style.cssFloat = 'right';
+  close.style.cursor = 'pointer';
+  close.addEventListener('mouseenter', () => (close.style.opacity = '0.5'));
+  close.addEventListener('mouseleave', () => (close.style.opacity = '1'));
+  close.addEventListener('click', () => (article.style.display = 'none'));
 
   return article;
 }
@@ -171,3 +189,12 @@ const articlesContainer = document.querySelector('.articles');
 data.forEach(data => {
   articlesContainer.appendChild(createArticle(data));
 });
+
+function writeArticle(title, date, paragraph) {
+  let articleObj = {
+    'title': title,
+    'date': date,
+    'firstParagraph': paragraph;
+  }
+  return articleObj;
+}
