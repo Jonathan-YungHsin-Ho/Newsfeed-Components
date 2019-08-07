@@ -101,7 +101,7 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
+  Your function should take either an object as its one argument, or 5 separate arguments mapping to each peice of the data object above.
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
 
@@ -135,4 +135,13 @@ function createArticle(dataObj) {
   article.classList.add('article');
   date.classList.add('date');
   expand.classList.add('expandButton');
+
+  //Set content
+  title.textContent = dataObj.title;
+  date.textContent = dataObj.date;
+  firstParagraph = dataObj.firstParagraph;
+  secondParagraph = dataObj.secondParagraph;
+  thirdParagraph = dataObj.thirdParagraph;
+
+  return article;
 }
