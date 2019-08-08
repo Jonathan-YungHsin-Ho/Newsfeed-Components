@@ -161,12 +161,12 @@ function createArticle(dataObj) {
   thirdParagraph.textContent = dataObj.thirdParagraph;
 
   // Toggle button
-  expand.textContent = 'Click to read';
+  expand.textContent = 'Click to expand';
   expand.addEventListener('click', () => {
     article.classList.toggle('article-open');
     expand.textContent = article.classList.contains('article-open')
-      ? 'Click to hide'
-      : 'Click to read';
+      ? 'Click to close'
+      : 'Click to expand';
     article.style.overflow = article.classList.contains('article-open')
       ? 'auto'
       : 'hidden';
