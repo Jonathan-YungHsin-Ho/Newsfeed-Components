@@ -190,11 +190,98 @@ data.forEach(data => {
   articlesContainer.appendChild(createArticle(data));
 });
 
-function writeArticle(title, date, paragraph) {
-  let articleObj = {
-    'title': title,
-    'date': date,
-    'firstParagraph': paragraph;
-  }
-  return articleObj;
+function addArticle(title, date, paragraph) {
+  const articleObj = {
+    title: title,
+    date: date,
+    firstParagraph: paragraph,
+  };
+  articlesContainer.appendChild(createArticle(articleObj));
 }
+
+// addArticle('testTitle', 'testDate', 'testParagraph');
+
+function formConstructor() {
+  const formContainer = document.createElement('div');
+  formContainer.style.margin = '20px 10%';
+  formContainer.style.display = 'flex';
+  formContainer.style.flexDirection = 'column';
+  formContainer.style.alignItems = 'center';
+
+  const formHeader = document.createElement('h2');
+  formHeader.style.fontSize = '28px';
+
+  const form = document.createElement('form');
+  form.style.display = 'flex';
+  form.style.flexDirection = 'column';
+  form.style.width = '85%';
+
+  const inputTitle = document.createElement('input');
+  inputTitle.type = 'text';
+  inputTitle.name = 'inputTitle';
+  inputTitle.id = 'inputTitle';
+  inputTitle.style.marginBottom = '15px';
+
+  const inputDate = document.createElement('input');
+  inputDate.type = 'date';
+  inputDate.name = 'inputDate';
+  inputDate.id = 'inputDate';
+  inputDate.style.marginBottom = '15px';
+
+  const inputContent = document.createElement('textarea');
+  inputContent.name = 'inputContent';
+  inputContent.id = 'inputContent';
+  inputContent.style.marginBottom = '15px';
+  inputContent.style.height = '150px';
+
+  const submit = document.createElement('input');
+  submit.type = 'submit';
+  submit.value = 'Submit Article';
+  submit.name = 'submit';
+  submit.id = 'submit';
+  submit.style.width = '20%';
+  submit.style.alignSelf = 'center';
+  submit.style.border = 'none';
+  submit.style.padding = '8px';
+  submit.style.borderRadius = '5px';
+  submit.style.backgroundColor = '#388E3C';
+  submit.style.color = '#ffffff';
+
+  formHeader.textContent = 'Add your own article here:';
+
+  formContainer.append(formHeader);
+  formContainer.append(form);
+  form.append('Article Title: ');
+  form.append(inputTitle);
+  form.append('Date: ');
+  form.append(inputDate);
+  form.append('Article Content: ');
+  form.append(inputContent);
+  form.append(submit);
+
+  const body = document.querySelector('body');
+  body.append(formContainer);
+}
+
+formConstructor();
+
+function submitForm() {
+  const formObj = {};
+
+  formObj.title = document.querySelector('#inputTitle').value;
+  formObj.date = document.querySelector('#inputDate').value;
+  formObj.firstParagraph = document.querySelector('#inputContent').value;
+
+  console.log(formObj);
+
+  articlesContainer.appendChild(createArticle(formObj));
+}
+
+const submit = document.querySelector('#submit');
+submit.addEventListener('click', event => {
+  event.preventDefault();
+  submitForm();
+  document.querySelector('#inputTitle').value = '';
+  document.querySelector('#inputDate').value = '';
+  document.querySelector('#inputContent').value = '';
+});
